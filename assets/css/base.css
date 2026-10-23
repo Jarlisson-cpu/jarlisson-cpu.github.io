@@ -1,0 +1,177 @@
+/* ==========================================================================
+   BASE — tokens de design, reset e tipografia
+   Tema: "Atalaia à noite" — azul de mar profundo, ciano do JARVIS e dourado.
+   ========================================================================== */
+
+:root {
+  /* Paleta */
+  --abismo: #0a1628;      /* fundo da página */
+  --mare: #10213d;        /* superfícies (cards) */
+  --mare-alta: #16294d;   /* superfícies elevadas, hover */
+  --linha: #243b66;       /* bordas */
+  --espuma: #e6f1ff;      /* texto principal */
+  --neblina: #93a8c9;     /* texto secundário */
+  --ciano: #4fe3e0;       /* destaque principal: interação, JARVIS */
+  --ciano-escuro: #0d3b4a;
+  --sol: #ffc24b;         /* destaque secundário: números, conquistas */
+  --erro: #ff7a85;
+
+  /* Tipografia */
+  --font-display: 'Unbounded', 'Arial Black', sans-serif;
+  --font-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
+
+  /* Escala tipográfica (razão ~1.25) */
+  --text-sm: 0.875rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.6rem;
+  --text-2xl: clamp(1.9rem, 3.4vw, 2.75rem);
+  --text-hero: clamp(2.9rem, 7.6vw, 6.4rem);
+
+  /* Espaçamento e forma */
+  --gutter: clamp(16px, 4vw, 40px);
+  --container: 1240px;
+  --section-space: clamp(88px, 12vw, 160px);
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+  --header-h: 76px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--abismo);
+  color: var(--espuma);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Brilho do "mar" no topo da página */
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 900px;
+  background:
+    radial-gradient(60% 50% at 78% 18%, rgba(79, 227, 224, 0.13), transparent 70%),
+    radial-gradient(45% 40% at 10% 0%, rgba(255, 194, 75, 0.07), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+img,
+svg,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: var(--ciano);
+  color: var(--abismo);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ciano);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+section[id] {
+  scroll-margin-top: calc(var(--header-h) + 12px);
+}
+
+/* Utilitários */
+.container {
+  width: 100%;
+  max-width: calc(var(--container) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  border: 0 !important;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -60px;
+  z-index: 100;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--ciano);
+  color: var(--abismo);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

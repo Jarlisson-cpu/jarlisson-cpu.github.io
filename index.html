@@ -3,351 +3,382 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jarlisson Brito Santos</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Jarlisson Brito | Desenvolvedor Python e Web</title>
+    <meta
+      name="description"
+      content="Portfólio de Jarlisson Brito, estudante de Ciência da Computação. Criador do JARVIS, assistente de IA por voz, e de projetos web com foco em acessibilidade."
+    />
+    <meta name="author" content="Jarlisson Brito Santos" />
+    <meta name="theme-color" content="#0a1628" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Jarlisson Brito | Desenvolvedor Python e Web" />
+    <meta
+      property="og:description"
+      content="Assistente de IA por voz, APIs em Flask e interfaces acessíveis."
+    />
+    <meta property="og:image" content="assets/img/jarlisson.jpg" />
+
+    <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-  </head>
-  <body>
-    <header>
-      <div class="container navbar">
-        <h1 class="logo">JARLISSON</h1>
 
-        <button class="menu-toggle" aria-label="Abrir menu">
-          <span></span>
-          <span></span>
-          <span></span>
+    <!-- Estilos: base → componentes → seções → responsivo -->
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/sections.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+
+    <!-- Scripts: dados → módulos → main (defer mantém a ordem) -->
+    <script src="assets/js/data/profile.js" defer></script>
+    <script src="assets/js/data/projects.js" defer></script>
+    <script src="assets/js/modules/waveform.js" defer></script>
+    <script src="assets/js/modules/console.js" defer></script>
+    <script src="assets/js/modules/projects.js" defer></script>
+    <script src="assets/js/modules/navigation.js" defer></script>
+    <script src="assets/js/modules/contact-form.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <div class="scroll-progress" aria-hidden="true"></div>
+
+    <!-- ============================ HEADER ============================ -->
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a href="#inicio" class="brand" aria-label="Jarlisson Brito, voltar ao início">
+          <span class="brand__mark" aria-hidden="true">JB</span>
+          <span class="brand__name">Jarlisson Brito</span>
+        </a>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-controls="site-nav"
+          aria-expanded="false"
+          aria-label="Abrir menu"
+        >
+          <span></span><span></span>
         </button>
 
-        <nav class="nav-menu">
-          <a href="#home">Home</a>
-          <a href="#about">Sobre</a>
-          <a href="#projects">Projetos</a>
+        <nav id="site-nav" class="site-nav" aria-label="Navegação principal">
+          <a href="#projetos">Projetos</a>
+          <a href="#sobre">Sobre</a>
           <a href="#skills">Skills</a>
-          <a href="#contact">Contato</a>
+          <a href="#contato">Contato</a>
+          <a class="btn btn--small btn--outline" href="https://www.linkedin.com/in/jarlisson-brito-602909368/" target="_blank" rel="noopener noreferrer">
+            LinkedIn
+          </a>
         </nav>
       </div>
     </header>
 
-    <section id="home" class="hero container">
-      <div class="hero-text">
-        <span>DESENVOLVEDOR FULL STACK</span>
+    <main id="conteudo">
+      <!-- ============================ HERO ============================ -->
+      <section id="inicio" class="hero container">
+        <div class="hero__intro">
+          <p class="status">
+            <span class="status__dot" aria-hidden="true"></span>
+            Aberto a estágio, vaga júnior e freelas
+          </p>
 
-        <h2>
-          JARLISSON <br />
-          BRITO <br />
-          SANTOS
-        </h2>
+          <h1 class="hero__title">Jarlisson<br />Brito</h1>
 
-        <p>
-          Crio sites e aplicações modernas em tons de cinza e preto, com foco em
-          usabilidade, performance e impacto visual. Meu objetivo é deixar cada
-          projeto elegante, rápido e fácil de usar.
-        </p>
+          <p class="hero__lede">
+            Estudante de Ciência da Computação. Construo assistentes de voz em
+            Python, APIs com banco de dados e interfaces web que todo mundo
+            consegue usar.
+          </p>
 
-        <div class="hero-buttons">
-          <a href="#projects" class="btn-primary">Ver Projetos</a>
-          <a
-            href="https://github.com/Jarlisson-cpu"
-            target="_blank"
-            class="btn-secondary"
-            >Ver GitHub</a
-          >
-        </div>
-      </div>
-
-      <div class="hero-image">
-        <div class="hero-card">
-          <div class="hero-card-badge">Portfolio pessoal</div>
-          <img src="image.png" alt="Foto de destaque do Jarlisson" />
-          <div class="hero-card-info">
-            <h4>Portfolio Jarlisson</h4>
-            <p>
-              Uma apresentação pessoal com design clean e foco em usabilidade.
-            </p>
-            <a
-              href="https://github.com/Jarlisson-cpu/portfolio_jarlisson"
-              target="_blank"
-              >Ver no GitHub</a
-            >
+          <div class="hero__actions">
+            <a href="#projetos" class="btn btn--primary">Ver projetos</a>
+            <a class="btn btn--outline" href="https://github.com/Jarlisson-cpu" target="_blank" rel="noopener noreferrer">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-github" /></svg>
+              GitHub
+            </a>
+            <a class="btn btn--outline" href="https://www.linkedin.com/in/jarlisson-brito-602909368/" target="_blank" rel="noopener noreferrer">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-linkedin" /></svg>
+              LinkedIn
+            </a>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section id="about" class="about container">
-      <div class="section-header">
-        <div>
-          <span class="section-subtitle">SOBRE</span>
-          <h3>Quem eu sou</h3>
-        </div>
-      </div>
+        <!-- Console interativo inspirado no JARVIS -->
+        <div class="console" aria-label="Console interativo inspirado no JARVIS">
+          <div class="console__bar">
+            <span class="console__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="console__title">jarvis@portfolio</span>
+            <span class="console__state" data-console-state>ouvindo</span>
+          </div>
 
-      <div class="about-grid">
-        <div class="about-card">
-          <h4>Desenvolvedor Full Stack</h4>
-          <p>
-            Sou especialista em criar soluções web modernas com estética escura,
-            estrutura organizada e experiência fluida. Trabalho com frontend,
-            backend e integração de APIs para entregar produtos completos.
-          </p>
+          <canvas class="console__wave" data-waveform height="72" aria-hidden="true"></canvas>
+
+          <div class="console__log" data-console-log aria-live="polite"></div>
+
+          <div class="console__chips" aria-label="Comandos sugeridos">
+            <button type="button" class="chip" data-command="projetos">projetos</button>
+            <button type="button" class="chip" data-command="jarvis">o que é o jarvis?</button>
+            <button type="button" class="chip" data-command="skills">skills</button>
+            <button type="button" class="chip" data-command="linkedin">abrir linkedin</button>
+            <button type="button" class="chip" data-command="contato">contato</button>
+          </div>
+
+          <form class="console__input" data-console-form autocomplete="off">
+            <label for="console-command" class="visually-hidden">Digite um comando</label>
+            <span aria-hidden="true">&gt;</span>
+            <input id="console-command" name="command" type="text" placeholder="digite um comando, ex: ajuda" />
+            <button type="submit" aria-label="Enviar comando">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-enter" /></svg>
+            </button>
+          </form>
         </div>
-        <div class="about-content">
+      </section>
+
+      <!-- ============================ PROJETOS ============================ -->
+      <section id="projetos" class="section container">
+        <header class="section-head">
+          <h2>Projetos</h2>
           <p>
-            Com experiência em projetos pessoais e profissionais, desenvolvo
-            desde landing pages até sistemas de gestão e dashboards
-            inteligentes. Uso tecnologias atuais para garantir que cada página
-            seja rápida, segura e responsiva.
+            Tudo aqui está no meu GitHub, com código aberto e README explicando
+            como rodar.
           </p>
-          <div class="about-highlights">
-            <div>
-              <strong>Qualidade técnica</strong>
-              <span>Código limpo, estrutura semântica e performance alta</span>
+        </header>
+
+        <!-- Projeto em destaque (preenchido por projects.js) -->
+        <article class="featured" data-featured></article>
+
+        <div class="filters" role="group" aria-label="Filtrar projetos">
+          <button type="button" class="filter is-active" data-filter="todos" aria-pressed="true">Todos</button>
+          <button type="button" class="filter" data-filter="web" aria-pressed="false">Web</button>
+          <button type="button" class="filter" data-filter="python" aria-pressed="false">Python</button>
+          <button type="button" class="filter" data-filter="matematica" aria-pressed="false">Matemática</button>
+        </div>
+
+        <div class="project-grid" data-projects></div>
+
+        <div class="studies">
+          <div class="studies__head">
+            <h3>Estudos e exercícios</h3>
+            <a class="link" href="https://github.com/Jarlisson-cpu?tab=repositories" target="_blank" rel="noopener noreferrer">Ver todos os repositórios</a>
+          </div>
+          <ul class="studies__list" data-studies></ul>
+        </div>
+
+        <template id="project-card-template">
+          <article class="project">
+            <div class="project__media" data-field="media"></div>
+            <div class="project__body">
+              <h3 class="project__title"><a data-field="title" target="_blank" rel="noopener noreferrer"></a></h3>
+              <p class="project__summary" data-field="summary"></p>
+              <ul class="project__highlights" data-field="highlights"></ul>
+              <ul class="tags" data-field="tags" aria-label="Tecnologias"></ul>
             </div>
-            <div>
-              <strong>Design profissional</strong>
-              <span>Interfaces em preto e cinza com atenção ao detalhe</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          </article>
+        </template>
+      </section>
 
-    <section id="skills" class="skills container">
-      <div class="section-header">
-        <div>
-          <span class="section-subtitle">SKILLS</span>
-          <h3>O que eu uso</h3>
-        </div>
-      </div>
+      <!-- ============================ SOBRE ============================ -->
+      <section id="sobre" class="section container about">
+        <figure class="about__photo">
+          <img src="assets/img/jarlisson.jpg" alt="Jarlisson Brito" width="960" height="1280" loading="lazy" />
+        </figure>
 
-      <div class="skills-grid">
-        <div class="skill-group">
-          <h4>Front-end</h4>
-          <span>HTML5 semântico</span>
-          <span>CSS moderno e responsivo</span>
-          <span>JavaScript puro</span>
-          <span>React e componentes</span>
-        </div>
-        <div class="skill-group">
-          <h4>Back-end</h4>
-          <span>Node.js</span>
-          <span>Express / APIs REST</span>
-          <span>Banco de dados SQL / NoSQL</span>
-          <span>Autenticação e segurança</span>
-        </div>
-        <div class="skill-group">
-          <h4>Ferramentas</h4>
-          <span>Git e GitHub</span>
-          <span>Deploy</span>
-          <span>Figma / UI design</span>
-          <span>VS Code</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="projects container">
-      <div class="section-header">
-        <div>
-          <span class="section-subtitle">PROJETOS</span>
-          <h3>Atividades Realizadas</h3>
-        </div>
-      </div>
-      <p class="projects-description">
-        Estes são alguns projetos públicos do meu GitHub. Cada card mostra o
-        repositório, a atividade desenvolvida e acesso direto ao código.
-      </p>
-      <a
-        class="repo-badge"
-        href="https://github.com/Jarlisson-cpu?tab=repositories"
-        target="_blank"
-      >
-        <span class="repo-badge-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path
-              d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.05-.02-2.06-3.34.73-4.04-1.61-4.04-1.61-.55-1.4-1.34-1.77-1.34-1.77-1.1-.75.08-.74.08-.74 1.22.09 1.86 1.25 1.86 1.25 1.08 1.85 2.84 1.32 3.54 1.01.11-.78.42-1.32.76-1.62-2.67-.3-5.48-1.34-5.48-5.95 0-1.31.47-2.39 1.24-3.23-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23.96-.27 1.99-.4 3.01-.4 1.02 0 2.05.14 3.01.4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.92 1.24 3.23 0 4.62-2.82 5.65-5.51 5.95.43.37.81 1.1.81 2.22 0 1.6-.01 2.89-.01 3.28 0 .32.22.7.83.58C20.56 21.8 24 17.31 24 12c0-6.63-5.37-12-12-12Z"
-            />
-          </svg>
-        </span>
-        Ver repositório completo
-      </a>
-      <div class="projects-grid" id="projects-container"></div>
-    </section>
-
-    <section id="contact" class="contact container">
-      <span class="section-subtitle">CONTATO</span>
-      <div class="contact-grid">
-        <div>
-          <h3>Vamos criar algo incrível juntos.</h3>
+        <div class="about__text">
+          <h2>Sobre mim</h2>
+          <p class="about__lede">
+            Sou estudante de Ciência da Computação e gosto de transformar ideias
+            em projetos que funcionam de verdade.
+          </p>
           <p>
-            Fale comigo pelos canais abaixo ou envie uma mensagem diretamente
-            pelo formulário. Cada contato chega direto ao meu e-mail e WhatsApp.
+            Meu maior projeto hoje é o JARVIS, um assistente de IA em Python com
+            voz, memória e plugins. Na web, construo interfaces com HTML, CSS e
+            JavaScript e back-ends com Flask e SQLite. Também gosto da parte
+            matemática da computação: álgebra linear e métodos numéricos.
           </p>
 
-          <div class="contact-cards">
-            <a
-              class="contact-card"
-              href="https://www.instagram.com/jarlisson_079/"
-              target="_blank"
-            >
-              <span class="contact-icon">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path
-                    d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Z"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M15.125 11.999a3.125 3.125 0 1 1-6.25 0 3.125 3.125 0 0 1 6.25 0Z"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M17.5 6.75h.01"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </span>
-              <strong>Instagram</strong>
-              <span>@jarlisson_079</span>
-            </a>
-            <a
-              class="contact-card"
-              href="https://www.linkedin.com/in/jarlisson-brito-602909368/"
-              target="_blank"
-            >
-              <span class="contact-icon">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path
-                    d="M4.983 3.5C3.779 3.5 3 4.34 3 5.508c0 1.145.742 2.01 1.991 2.01h.023c1.464 0 2.016-.868 2.016-2.01C7.03 4.34 6.25 3.5 5.05 3.5h-.066Z"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                  />
-                  <path
-                    d="M3.5 8.5h3v11h-3v-11Zm5.5 0h2.85v1.5h.04c.397-.748 1.365-1.535 2.813-1.535 3.01 0 3.568 1.98 3.568 4.549V19.5h-3v-5.855c0-1.397-.025-3.195-1.948-3.195-1.948 0-2.246 1.516-2.246 3.082V19.5h-3v-11Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
-              <strong>LinkedIn</strong>
-              <span>/in/jarlisson-brito-602909368</span>
-            </a>
-            <a
-              class="contact-card"
-              href="https://wa.me/5579988491156?text=Olá%20Jarlisson,%20gostaria%20de%20saber%20mais%20sobre%20seus%20serviços"
-              target="_blank"
-            >
-              <span class="contact-icon">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path
-                    d="M16.8 7.2a5.6 5.6 0 0 0-7.92 7.92l-.352 1.6 1.664-.448a5.6 5.6 0 0 0 6.608-6.608l-1.6 1.6a.8.8 0 0 1-1.136-1.136l1.6-1.6ZM11.4 3h1.2a8.4 8.4 0 0 1 8.4 8.4 8.4 8.4 0 0 1-8.4 8.4H7.92L3 21l1.2-5.4A8.4 8.4 0 0 1 11.4 3Z"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </span>
-              <strong>WhatsApp</strong>
-              <span>+55 79 98849-1156</span>
-            </a>
-            <a class="contact-card" href="mailto:britojarlisson64@gmail.com">
-              <span class="contact-icon">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path
-                    d="M3.5 6.5h17a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-17a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1Z"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                  />
-                  <path
-                    d="M3.5 7.5l8.5 6 8.5-6"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                  />
-                </svg>
-              </span>
-              <strong>Gmail</strong>
-              <span>britojarlisson64@gmail.com</span>
-            </a>
+          <div class="interests">
+            <div class="interest">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wave" /></svg>
+              <h3>IA e automação</h3>
+              <p>Assistentes que ouvem, lembram e agem no computador.</p>
+            </div>
+            <div class="interest">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-a11y" /></svg>
+              <h3>Acessibilidade</h3>
+              <p>Interfaces com alto contraste, leitura por voz e teclado.</p>
+            </div>
+            <div class="interest">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sigma" /></svg>
+              <h3>Matemática computacional</h3>
+              <p>Algoritmos de álgebra linear e cálculo numérico do zero.</p>
+            </div>
           </div>
+
+          <div class="goals">
+            <h3>Onde estou agora</h3>
+            <ul>
+              <li class="is-done">Construir um projeto Python grande e modular (JARVIS)</li>
+              <li class="is-done">Criar uma API REST com banco de dados (Academia Power)</li>
+              <li>Aprofundar Java e Spring Boot</li>
+              <li>Publicar meus projetos front-end no GitHub Pages</li>
+              <li>Contribuir com projetos open source</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ SKILLS ============================ -->
+      <section id="skills" class="section container">
+        <header class="section-head">
+          <h2>Skills</h2>
+          <p>Ferramentas que uso nos projetos acima. As marcadas com ponto dourado estou estudando agora.</p>
+        </header>
+
+        <div class="skills">
+          <div class="skill-col">
+            <h3>Linguagens e web</h3>
+            <ul class="tags tags--large">
+              <li>Python</li><li>JavaScript</li><li>HTML</li><li>CSS</li><li class="is-learning">Java</li>
+            </ul>
+          </div>
+          <div class="skill-col">
+            <h3>Back-end e dados</h3>
+            <ul class="tags tags--large">
+              <li>Flask</li><li>APIs REST</li><li>SQLite</li><li>MySQL</li><li>PostgreSQL</li><li>ChromaDB</li><li class="is-learning">Spring Boot</li>
+            </ul>
+          </div>
+          <div class="skill-col">
+            <h3>Ferramentas e práticas</h3>
+            <ul class="tags tags--large">
+              <li>Git</li><li>GitHub</li><li>pytest</li><li>Playwright</li><li>VS Code</li><li>Figma</li><li>PWA</li><li>WCAG / ARIA</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ CONTATO ============================ -->
+      <section id="contato" class="section container contact">
+        <div class="contact__intro">
+          <h2>Vamos conversar</h2>
+          <p>
+            Tem uma vaga, um freela ou uma ideia de projeto? Me chame pelo canal
+            que preferir ou mande uma mensagem pelo formulário.
+          </p>
+
+          <ul class="channels">
+            <li>
+              <a class="channel" href="https://www.linkedin.com/in/jarlisson-brito-602909368/" target="_blank" rel="noopener noreferrer">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-linkedin" /></svg>
+                <span><strong>LinkedIn</strong><small>jarlisson-brito</small></span>
+              </a>
+            </li>
+            <li>
+              <a class="channel" href="https://github.com/Jarlisson-cpu" target="_blank" rel="noopener noreferrer">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-github" /></svg>
+                <span><strong>GitHub</strong><small>Jarlisson-cpu</small></span>
+              </a>
+            </li>
+            <li>
+              <a class="channel" href="mailto:britojarlisson64@gmail.com">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mail" /></svg>
+                <span><strong>E-mail</strong><small>britojarlisson64@gmail.com</small></span>
+              </a>
+            </li>
+            <li>
+              <a class="channel" href="https://wa.me/5579988491156?text=Ol%C3%A1%20Jarlisson%2C%20vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar" target="_blank" rel="noopener noreferrer">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chat" /></svg>
+                <span><strong>WhatsApp</strong><small>+55 79 98849-1156</small></span>
+              </a>
+            </li>
+            <li>
+              <a class="channel" href="https://www.instagram.com/jarlisson_079/" target="_blank" rel="noopener noreferrer">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-instagram" /></svg>
+                <span><strong>Instagram</strong><small>@jarlisson_079</small></span>
+              </a>
+            </li>
+          </ul>
         </div>
 
         <form
           id="contact-form"
-          class="contact-form"
+          class="form"
           action="https://formsubmit.co/ajax/britojarlisson64@gmail.com"
           method="POST"
         >
-          <input
-            type="hidden"
-            name="_subject"
-            value="Novo contato pelo site de Jarlisson"
-          />
+          <input type="hidden" name="_subject" value="Novo contato pelo portfólio" />
           <input type="hidden" name="_captcha" value="false" />
+          <input type="text" name="_honey" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
-          <label for="name">Nome</label>
-          <input
-            id="name"
-            name="Nome"
-            type="text"
-            placeholder="Seu nome"
-            required
-          />
+          <div class="field">
+            <label for="name">Seu nome</label>
+            <input id="name" name="Nome" type="text" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="email">Seu e-mail</label>
+            <input id="email" name="_replyto" type="email" autocomplete="email" required />
+          </div>
+          <div class="field">
+            <label for="message">Mensagem</label>
+            <textarea id="message" name="Mensagem" rows="5" required></textarea>
+          </div>
 
-          <label for="email">E-mail</label>
-          <input
-            id="email"
-            name="_replyto"
-            type="email"
-            placeholder="seu@email.com"
-            required
-          />
-
-          <label for="message">Mensagem</label>
-          <textarea
-            id="message"
-            name="Mensagem"
-            rows="6"
-            placeholder="Escreva sua mensagem"
-            required
-          ></textarea>
-
-          <button type="submit" class="btn-primary">Enviar Mensagem</button>
-          <p class="form-note form-status" aria-live="polite">
-            A mensagem será enviada diretamente para britojarlisson64@gmail.com.
-          </p>
+          <button type="submit" class="btn btn--primary">Enviar mensagem</button>
+          <p class="form__status" aria-live="polite"></p>
         </form>
-      </div>
-    </section>
+      </section>
+    </main>
 
-    <footer class="footer container">
-      <p>
-        © 2026 Jarlisson Brito Santos. Portfólio criado para mostrar projetos
-        modernos e contato profissional.
-      </p>
+    <!-- ============================ FOOTER ============================ -->
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <p>© <span data-year>2026</span> Jarlisson Brito Santos</p>
+        <p>Feito à mão com HTML, CSS e JavaScript. <a class="link" href="https://github.com/Jarlisson-cpu/portif-lio" target="_blank" rel="noopener noreferrer">Ver o código</a></p>
+      </div>
     </footer>
 
-    <a
-      class="whatsapp-float"
-      href="https://wa.me/5579988491156?text=Olá%20Jarlisson,%20gostaria%20de%20conversar%20sobre%20um%20projeto"
-      target="_blank"
-      aria-label="WhatsApp"
-    >
-      WhatsApp
+    <a class="whatsapp-float" href="https://wa.me/5579988491156?text=Ol%C3%A1%20Jarlisson%2C%20vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar" target="_blank" rel="noopener noreferrer" aria-label="Conversar no WhatsApp">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chat" /></svg>
     </a>
 
-    <script src="script.js"></script>
+    <!-- ============================ ÍCONES ============================
+         Definidos uma vez e reutilizados com <use href="#i-nome" /> -->
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <symbol id="i-github" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.16 1.17a10.9 10.9 0 0 1 5.76 0c2.19-1.48 3.16-1.17 3.16-1.17.63 1.58.23 2.75.11 3.04.74.8 1.19 1.82 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
+      </symbol>
+      <symbol id="i-linkedin" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3v-11Zm6.5 0h3.8v1.5h.06c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.77 2.65 4.77 6.1v5.35h-4v-4.74c0-1.13-.02-2.58-1.57-2.58-1.58 0-1.82 1.23-1.82 2.5v4.82h-4v-11Z" />
+      </symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5" /><path d="m3.5 6.5 8.5 6.5 8.5-6.5" /></g>
+      </symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5Z" />
+      </symbol>
+      <symbol id="i-instagram" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><path d="M17.5 6.5h.01" /></g>
+      </symbol>
+      <symbol id="i-enter" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M20 5v7a3 3 0 0 1-3 3H5m0 0 4-4m-4 4 4 4" />
+      </symbol>
+      <symbol id="i-external" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4" />
+      </symbol>
+      <symbol id="i-wave" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M3 12h1M7 8v8M11 4v16M15 7v10M19 10v4M21 12h0" />
+      </symbol>
+      <symbol id="i-a11y" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="1.8" /><path d="M5 8.5c2.3.8 4.6 1.2 7 1.2s4.7-.4 7-1.2M12 9.7V14m0 0-3 6.5M12 14l3 6.5" /></g>
+      </symbol>
+      <symbol id="i-sigma" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M18 5H6l6 7-6 7h12" />
+      </symbol>
+    </svg>
   </body>
 </html>
