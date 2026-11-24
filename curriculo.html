@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Currículo · Jarlisson Brito Santos</title>
+    <meta name="description" content="Currículo de Jarlisson Brito Santos, estudante de Ciência da Computação na UNIT e desenvolvedor back-end (Java e Python)." />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      /* Currículo em A4, uma coluna, fácil de ler por pessoas e por sistemas de recrutamento */
+      @page {
+        size: A4;
+        margin: 10mm 13mm;
+      }
+
+      :root {
+        --ink: #17171a;
+        --muted: #55555f;
+        --line: #e3e3e8;
+        --accent: #e8590c;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: #ececef;
+        color: var(--ink);
+        font-family: 'Inter', Arial, sans-serif;
+        font-size: 9.4pt;
+        line-height: 1.42;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .page {
+        max-width: 210mm;
+        margin: 24px auto;
+        padding: 14mm 15mm;
+        background: #fff;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* Cabeçalho */
+      header {
+        padding-bottom: 12px;
+        border-bottom: 3px solid var(--accent);
+      }
+
+      h1 {
+        font-family: 'Outfit', Arial, sans-serif;
+        font-size: 22pt;
+        font-weight: 800;
+        letter-spacing: 0.01em;
+        line-height: 1.05;
+      }
+
+      .role {
+        margin-top: 4px;
+        color: var(--accent);
+        font-family: 'Outfit', Arial, sans-serif;
+        font-size: 12.5pt;
+        font-weight: 700;
+      }
+
+      .contacts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2px 14px;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 9pt;
+        list-style: none;
+      }
+
+      .contacts li + li::before {
+        content: '·';
+        margin-right: 14px;
+        color: #b5b5bd;
+      }
+
+      .contacts a {
+        color: var(--ink);
+        font-weight: 500;
+      }
+
+      /* Seções */
+      section {
+        margin-top: 10px;
+      }
+
+      h2 {
+        margin-bottom: 7px;
+        padding-bottom: 3px;
+        border-bottom: 1px solid var(--line);
+        color: var(--ink);
+        font-family: 'Outfit', Arial, sans-serif;
+        font-size: 10.5pt;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      h2::before {
+        content: '';
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        margin-right: 8px;
+        background: var(--accent);
+        vertical-align: 1px;
+      }
+
+      .summary {
+        color: #2b2b31;
+      }
+
+      /* Itens com título + data */
+      .item + .item {
+        margin-top: 7px;
+      }
+
+      .item__head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+      }
+
+      h3 {
+        font-size: 10.5pt;
+        font-weight: 700;
+      }
+
+      .date {
+        flex-shrink: 0;
+        color: var(--muted);
+        font-size: 9pt;
+        font-weight: 600;
+      }
+
+      .org {
+        color: var(--muted);
+        font-size: 9.5pt;
+      }
+
+      ul.bullets {
+        margin-top: 3px;
+        padding-left: 15px;
+      }
+
+      ul.bullets li {
+        margin-top: 1px;
+      }
+
+      ul.bullets li::marker {
+        color: var(--accent);
+      }
+
+      .tech {
+        margin-top: 2px;
+        color: var(--muted);
+        font-size: 8.8pt;
+      }
+
+      .tech b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      /* Projetos em duas colunas */
+      .projects {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px 18px;
+      }
+
+      .projects .item + .item {
+        margin-top: 0;
+      }
+
+      .projects p {
+        font-size: 9.3pt;
+      }
+
+      .link {
+        color: var(--accent);
+        font-size: 8.6pt;
+        font-weight: 600;
+      }
+
+      /* Habilidades */
+      .skills {
+        display: grid;
+        grid-template-columns: 128px 1fr;
+        gap: 3px 12px;
+        font-size: 9.5pt;
+      }
+
+      .skills dt {
+        font-weight: 700;
+      }
+
+      .two-cols {
+        display: grid;
+        grid-template-columns: 1.35fr 1fr;
+        gap: 0 22px;
+      }
+
+      .compact .item + .item {
+        margin-top: 6px;
+      }
+
+      .courses {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px 22px;
+      }
+
+      .courses .item + .item {
+        margin-top: 0;
+      }
+
+      .compact p {
+        font-size: 9.2pt;
+        color: #2b2b31;
+      }
+
+      .plain {
+        list-style: none;
+        font-size: 9.5pt;
+      }
+
+      .plain li + li {
+        margin-top: 2px;
+      }
+
+      /* Barra com botões (só na tela) */
+      .toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px;
+        background: #0c0c0e;
+      }
+
+      .toolbar a,
+      .toolbar button {
+        padding: 9px 16px;
+        border: 1px solid #ff6b1a;
+        border-radius: 8px;
+        background: transparent;
+        color: #ff6b1a;
+        font: 700 12px 'Inter', Arial, sans-serif;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .toolbar .primary {
+        background: #ff6b1a;
+        color: #fff;
+      }
+
+      @media (max-width: 700px) {
+        .page {
+          margin: 0;
+          padding: 22px 18px;
+        }
+
+        .projects,
+        .courses {
+          grid-template-columns: 1fr;
+        }
+
+        .skills {
+          grid-template-columns: 1fr;
+        }
+
+        .skills dd {
+          margin-bottom: 6px;
+        }
+      }
+      @media print {
+        body {
+          background: #fff;
+        }
+
+        .page {
+          margin: 0;
+          padding: 0;
+          box-shadow: none;
+        }
+
+        .toolbar {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="toolbar" aria-label="Ações">
+      <a href="./">← Voltar ao portfólio</a>
+      <a class="primary" href="assets/docs/curriculo-jarlisson-brito.pdf" download>Baixar PDF</a>
+    </nav>
+
+    <main class="page">
+      <header>
+        <h1>Jarlisson Brito Santos</h1>
+        <p class="role">Desenvolvedor Back-end · Java e Python</p>
+        <ul class="contacts">
+          <li>Aracaju – SE</li>
+          <li><a href="https://wa.me/5579988491156">(79) 98849-1156</a></li>
+          <li><a href="mailto:britojarlisson64@gmail.com">britojarlisson64@gmail.com</a></li>
+          <li><a href="https://www.linkedin.com/in/jarlisson-brito-602909368/">linkedin.com/in/jarlisson-brito</a></li>
+          <li><a href="https://github.com/Jarlisson-cpu">github.com/Jarlisson-cpu</a></li>
+          <li><a href="https://jarlisson-cpu.github.io/">jarlisson-cpu.github.io</a></li>
+        </ul>
+      </header>
+
+      <section>
+        <h2>Resumo</h2>
+        <p class="summary">
+          Estudante de Ciência da Computação na UNIT e estagiário na FUNDAT, com foco em back-end.
+          Desenvolvo APIs REST com Spring Boot e Flask, modelo bancos PostgreSQL e escrevo testes
+          com JUnit, Mockito e pytest. Projetos publicados no GitHub, incluindo um assistente por
+          voz com IA, e experiência em equipe com Git, issues e Kanban.
+        </p>
+      </section>
+
+      <section>
+        <h2>Experiência</h2>
+        <div class="item">
+          <div class="item__head">
+            <h3>Estagiário em Ciência da Computação</h3>
+            <span class="date">nov/2025 – atual</span>
+          </div>
+          <p class="org">Fundação Municipal de Formação para o Trabalho (FUNDAT) · Aracaju – SE</p>
+          <ul class="bullets">
+            <li>Apoio ao desenvolvimento tecnológico e às soluções computacionais da instituição.</li>
+            <li>Suporte aos sistemas utilizados no dia a dia, com foco em manter os serviços funcionando.</li>
+            <li>Análise de dados e otimização de processos, buscando eficiência e qualidade nos serviços prestados.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Projetos</h2>
+        <div class="projects">
+          <div class="item">
+            <h3>JARVIS · assistente pessoal por voz</h3>
+            <p>Controla o Windows por voz e conversa com IA (Claude, GPT ou Gemini), com usuários protegidos por senha e confirmação para ações perigosas.</p>
+            <p class="tech"><b>Python</b> · Vosk · Playwright · pytest (26 arquivos de teste)</p>
+          </div>
+          <div class="item">
+            <h3>Biblioteca API</h3>
+            <p>API REST de acervo e empréstimos, com multa por atraso, regras configuráveis e erros no padrão RFC 9457.</p>
+            <p class="tech"><b>Java 21</b> · Spring Boot · JPA · JUnit · Mockito · GitHub Actions</p>
+          </div>
+          <div class="item">
+            <h3>Oficina Mecânica · banco de dados (equipe)</h3>
+            <p>300 mil ordens de serviço, 5 regras em triggers e 34 testes. Um índice levou uma busca de 30,6 ms a 0,25 ms.</p>
+            <p class="tech"><b>PostgreSQL</b> · SQL · Python · issues, sprints e Kanban</p>
+          </div>
+          <div class="item">
+            <h3>Minhas Finanças · app web (PWA)</h3>
+            <p>Controle financeiro com orçamentos, metas e parcelas; funciona offline e exporta CSV e JSON.</p>
+            <p class="tech"><b>JavaScript</b> · PWA · Service Worker</p>
+          </div>
+        </div>
+        <p class="link" style="margin-top: 6px">Todos os projetos, com código e demonstrações: jarlisson-cpu.github.io</p>
+      </section>
+
+      <section>
+        <h2>Formação</h2>
+        <div class="item">
+          <div class="item__head">
+            <h3>Bacharelado em Ciência da Computação</h3>
+            <span class="date">em andamento</span>
+          </div>
+          <p class="org">Universidade Tiradentes (UNIT) · Aracaju – SE</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Habilidades técnicas</h2>
+        <dl class="skills">
+          <dt>Linguagens</dt>
+          <dd>Java, Python, SQL, JavaScript, HTML, CSS</dd>
+          <dt>Back-end e dados</dt>
+          <dd>Spring Boot, Spring Data JPA, Flask, APIs REST, PostgreSQL, MySQL, SQLite</dd>
+          <dt>Testes e entrega</dt>
+          <dd>JUnit, Mockito, pytest, GitHub Actions, Maven, Git e GitHub</dd>
+          <dt>Front-end e outros</dt>
+          <dd>PWA, acessibilidade (WCAG / ARIA), Figma, Pacote Office</dd>
+        </dl>
+      </section>
+
+      <section class="compact">
+        <h2>Cursos e atividades</h2>
+        <div class="courses">
+          <div class="item">
+            <div class="item__head"><h3>Circuito Tecnológico</h3><span class="date">2025</span></div>
+            <p>UNIT · Contratos na blockchain, game no Figma e Unity (39h)</p>
+          </div>
+          <div class="item">
+            <div class="item__head"><h3>Projeto Mentoria</h3><span class="date">2025</span></div>
+            <p>UNIT · Figma, Git/GitHub, HTML, CSS, JS e Python (20h)</p>
+          </div>
+          <div class="item">
+            <div class="item__head"><h3>Agente de Informações Turísticas</h3><span class="date">2023</span></div>
+            <p>SENAC</p>
+          </div>
+          <div class="item">
+            <div class="item__head"><h3>Projeto Conectando com a Vida</h3><span class="date">2022</span></div>
+            <p>Instituto Luciano Barreto Jr. · 3 módulos de 80h</p>
+          </div>
+          <div class="item">
+            <div class="item__head"><h3>OBFEP · Olimpíada de Física</h3><span class="date">2022</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="compact">
+        <h2>Mais sobre mim</h2>
+        <p>Português (nativo) · CNH categorias A e B · Disponibilidade de horário · Boa comunicação, trabalho em equipe, proatividade e comprometimento</p>
+      </section>
+    </main>
+  </body>
+</html>

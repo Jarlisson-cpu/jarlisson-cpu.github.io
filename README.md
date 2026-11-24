@@ -59,6 +59,8 @@ Feito com HTML, CSS e JavaScript puros: sem frameworks e sem etapa de build.
 | Mudar cores ou fontes | Variáveis no topo de `assets/css/base.css` |
 | Mudar links de contato | `assets/js/data/profile.js` e a seção Contato do `index.html` |
 | Editar formação e experiência | Seção Trajetória do `index.html` |
+| Adicionar um depoimento (real) | `assets/js/data/testimonials.js` (a seção aparece sozinha) |
+| Atualizar o currículo | Edite `curriculo.html` e gere o PDF em `assets/docs/` (imprimir → salvar como PDF) |
 
 ## 🚀 Como executar
 

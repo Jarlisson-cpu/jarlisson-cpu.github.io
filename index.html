@@ -70,7 +70,9 @@
     <!-- Scripts: dados → módulos → main (defer mantém a ordem) -->
     <script src="assets/js/data/profile.js" defer></script>
     <script src="assets/js/data/projects.js" defer></script>
+    <script src="assets/js/data/testimonials.js" defer></script>
     <script src="assets/js/modules/projects.js" defer></script>
+    <script src="assets/js/modules/testimonials.js" defer></script>
     <script src="assets/js/modules/navigation.js" defer></script>
     <script src="assets/js/modules/reveal.js" defer></script>
     <script src="assets/js/modules/effects.js" defer></script>
@@ -384,6 +386,14 @@
               <p>Interface que funciona no teclado, no leitor de tela e no celular. Sistema bom é o que todo mundo consegue usar.</p>
             </div>
           </div>
+
+          <div class="about__actions" data-reveal="up">
+            <a class="btn btn--primary" href="assets/docs/curriculo-jarlisson-brito.pdf" download data-magnetic>
+              Baixar currículo (PDF)
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-download" /></svg>
+            </a>
+            <a class="btn btn--outline" href="curriculo.html" data-magnetic>Ver online</a>
+          </div>
         </div>
       </section>
 
@@ -418,6 +428,11 @@
             <h3>Back-end, dados e equipe</h3>
             <p>Banco PostgreSQL com 300 mil ordens de serviço organizado com issues, sprints e Kanban; gerador de projetos Maven; ordenação de 1 milhão de registros.</p>
           </li>
+          <li class="road__item" data-reveal="up">
+            <span class="road__phase">Estágio · FUNDAT · nov/2025 – atual</span>
+            <h3>Tecnologia no serviço público</h3>
+            <p>Estagiário em Ciência da Computação na Fundação Municipal de Formação para o Trabalho: apoio a sistemas, análise de dados e melhoria de processos.</p>
+          </li>
           <li class="road__item road__item--now" data-reveal="up">
             <span class="road__phase">Hoje · Java + Python + IA</span>
             <h3>Pronto para o seu projeto</h3>
@@ -427,6 +442,18 @@
       </section>
 
       <div class="bg-word bg-word--solid" aria-hidden="true"><span data-scroll-x="0.35">Java ✶ Python ✶ SQL ✶ Spring Boot ✶ Flask ✶ PostgreSQL ✶ Java ✶ Python ✶ SQL ✶</span></div>
+
+      <!-- ============================ DEPOIMENTOS ============================
+           Só aparece quando assets/js/data/testimonials.js tiver itens. -->
+      <section id="depoimentos" class="section container" data-testimonials hidden>
+        <header class="section-head">
+          <div>
+            <p class="eyebrow">Depoimentos</p>
+            <h2 class="display" data-reveal="clip">Quem trabalhou comigo diz</h2>
+          </div>
+        </header>
+        <ul class="testimonials" data-testimonials-list></ul>
+      </section>
 
       <!-- ============================ 06 · STACK ============================ -->
       <section id="skills" class="section container" data-dot="Stack">
@@ -488,6 +515,11 @@
             </li>
           </ul>
 
+          <a class="cv-link" href="assets/docs/curriculo-jarlisson-brito.pdf" download>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-download" /></svg>
+            Baixar meu currículo (PDF)
+          </a>
+
           <p class="live-status">
             <span class="pulse pulse--green" aria-hidden="true"></span>
             Aceitando novos projetos · Aracaju · SE · <time data-clock>--:--</time> local
@@ -542,6 +574,7 @@
               <li><a href="#skills">Stack</a></li>
               <li><a href="#sobre">Quem eu sou</a></li>
               <li><a href="#contato">Contato</a></li>
+              <li><a href="curriculo.html">Currículo</a></li>
             </ul>
           </nav>
           <div>
@@ -592,6 +625,7 @@
       <symbol id="i-layers" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5 9-5Z" /><path d="m3 13 9 5 9-5" /></g></symbol>
       <symbol id="i-a11y" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="1.8" /><path d="M5 8.5c2.3.8 4.6 1.2 7 1.2s4.7-.4 7-1.2M12 9.7V14m0 0-3 6.5M12 14l3 6.5" /></g></symbol>
       <symbol id="i-sparkle" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 3c.6 4.2 2.8 6.4 7 7-4.2.6-6.4 2.8-7 7-.6-4.2-2.8-6.4-7-7 4.2-.6 6.4-2.8 7-7ZM19 15c.3 1.6 1 2.4 2.5 2.7-1.5.3-2.2 1.1-2.5 2.7-.3-1.6-1-2.4-2.5-2.7 1.5-.3 2.2-1.1 2.5-2.7Z" /></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14" /></symbol>
     </svg>
   </body>
 </html>

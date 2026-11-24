@@ -1581,3 +1581,108 @@
   color: var(--text);
   font-family: var(--font-mono);
 }
+
+
+/* ==========================================================================
+   CURRÍCULO E DEPOIMENTOS
+   ========================================================================== */
+.about__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.cv-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+  color: var(--orange);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.cv-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.testimonials {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+  gap: 18px;
+  list-style: none;
+}
+
+.testimonial {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 28px 26px 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--card);
+}
+
+.testimonial__mark {
+  position: absolute;
+  right: 20px;
+  top: 4px;
+  color: var(--orange);
+  font-family: var(--font-poster);
+  font-size: 4.5rem;
+  line-height: 1;
+  opacity: 0.5;
+}
+
+.testimonial__text {
+  color: var(--text);
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.testimonial__author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.testimonial__avatar {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--orange);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.testimonial__author span:last-child {
+  display: grid;
+}
+
+.testimonial__author a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.testimonial__author a:hover {
+  color: var(--orange);
+}
+
+.testimonial__author small {
+  color: var(--muted);
+  font-size: 0.82rem;
+}

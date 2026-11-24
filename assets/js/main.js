@@ -3,6 +3,7 @@
  */
 
 Projects.init();
+Testimonials.init();
 Effects.init();
 Navigation.init();
 Reveal.init();
