@@ -1,41 +1,43 @@
 /* ==========================================================================
    BASE — tokens de design, reset e tipografia
-   Tema: "Atalaia à noite" — azul de mar profundo, ciano do JARVIS e dourado.
+   Tema: preto profundo com laranja vibrante.
    ========================================================================== */
 
 :root {
   /* Paleta */
-  --abismo: #0a1628;      /* fundo da página */
-  --mare: #10213d;        /* superfícies (cards) */
-  --mare-alta: #16294d;   /* superfícies elevadas, hover */
-  --linha: #243b66;       /* bordas */
-  --espuma: #e6f1ff;      /* texto principal */
-  --neblina: #93a8c9;     /* texto secundário */
-  --ciano: #4fe3e0;       /* destaque principal: interação, JARVIS */
-  --ciano-escuro: #0d3b4a;
-  --sol: #ffc24b;         /* destaque secundário: números, conquistas */
-  --erro: #ff7a85;
+  --bg: #09090b;           /* fundo da página */
+  --bg-alt: #0e0e11;       /* faixas alternadas */
+  --card: #131316;         /* superfícies */
+  --card-hi: #1a1a1e;      /* superfícies elevadas, hover */
+  --line: #25252b;         /* bordas */
+  --text: #f6f6f4;         /* texto principal */
+  --muted: #a3a3ad;        /* texto secundário */
+  --orange: #ff6b1a;       /* destaque principal */
+  --orange-hi: #ff8c42;    /* hover */
+  --orange-soft: rgba(255, 107, 26, 0.12);
+  --orange-glow: rgba(255, 107, 26, 0.45);
+  --green: #3ddc84;
+  --error: #ff6b6b;
 
   /* Tipografia */
-  --font-display: 'Unbounded', 'Arial Black', sans-serif;
-  --font-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Outfit', 'Arial Black', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
+  --font-poster: 'Anton', 'Impact', 'Arial Narrow', sans-serif;
 
-  /* Escala tipográfica (razão ~1.25) */
   --text-sm: 0.875rem;
-  --text-base: 1.0625rem;
-  --text-lg: 1.25rem;
-  --text-xl: 1.6rem;
-  --text-2xl: clamp(1.9rem, 3.4vw, 2.75rem);
-  --text-hero: clamp(2.9rem, 7.6vw, 6.4rem);
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-2xl: clamp(1.9rem, 3.6vw, 2.9rem);
+  --text-hero: clamp(2.7rem, 6.4vw, 5.6rem);
 
   /* Espaçamento e forma */
-  --gutter: clamp(16px, 4vw, 40px);
-  --container: 1240px;
-  --section-space: clamp(88px, 12vw, 160px);
-  --radius-sm: 10px;
-  --radius-md: 18px;
-  --radius-lg: 28px;
+  --gutter: clamp(18px, 4vw, 40px);
+  --container: 1200px;
+  --section-space: clamp(80px, 10vw, 128px);
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
   --header-h: 76px;
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -56,8 +58,8 @@ html {
 
 body {
   min-height: 100vh;
-  background: var(--abismo);
-  color: var(--espuma);
+  background: var(--bg);
+  color: var(--text);
   font-family: var(--font-body);
   font-size: var(--text-base);
   line-height: 1.65;
@@ -65,22 +67,8 @@ body {
   overflow-x: hidden;
 }
 
-/* Brilho do "mar" no topo da página */
-body::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 auto;
-  height: 900px;
-  background:
-    radial-gradient(60% 50% at 78% 18%, rgba(79, 227, 224, 0.13), transparent 70%),
-    radial-gradient(45% 40% at 10% 0%, rgba(255, 194, 75, 0.07), transparent 70%);
-  pointer-events: none;
-  z-index: -1;
-}
-
 img,
-svg,
-canvas {
+svg {
   display: block;
   max-width: 100%;
 }
@@ -100,9 +88,9 @@ h1,
 h2,
 h3 {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.1;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   text-wrap: balance;
 }
 
@@ -111,18 +99,18 @@ p {
 }
 
 ::selection {
-  background: var(--ciano);
-  color: var(--abismo);
+  background: var(--orange);
+  color: #fff;
 }
 
 :focus-visible {
-  outline: 2px solid var(--ciano);
+  outline: 2px solid var(--orange);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
 section[id] {
-  scroll-margin-top: calc(var(--header-h) + 12px);
+  scroll-margin-top: calc(var(--header-h) + 8px);
 }
 
 /* Utilitários */
@@ -152,8 +140,8 @@ section[id] {
   z-index: 100;
   padding: 10px 16px;
   border-radius: var(--radius-sm);
-  background: var(--ciano);
-  color: var(--abismo);
+  background: var(--orange);
+  color: #fff;
   font-weight: 700;
   text-decoration: none;
 }
@@ -162,16 +150,19 @@ section[id] {
   top: 12px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+.accent {
+  color: var(--orange);
+}
 
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+/* Efeitos desligados (pelo sistema ou pelo botão "Efeitos") */
+.reduce-motion {
+  scroll-behavior: auto;
+}
+
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
 }

@@ -20,7 +20,7 @@ const Navigation = (() => {
     toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
     nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setOpen(false)));
     document.addEventListener('keydown', e => e.key === 'Escape' && setOpen(false));
-    window.matchMedia('(min-width: 721px)').addEventListener('change', () => setOpen(false));
+    window.matchMedia('(min-width: 961px)').addEventListener('change', () => setOpen(false));
   }
 
   function setupActiveLink() {

@@ -3,129 +3,188 @@
  *
  * Campos:
  *   repo      → nome exato do repositório no GitHub
- *   path      → (opcional) subpasta dentro do repo
  *   title     → nome exibido no card
+ *   kind      → categoria curta exibida no topo do card
  *   summary   → uma ou duas frases sobre o projeto
- *   highlights→ o que o projeto faz de mais interessante
+ *   proofs    → três provas curtas (viram selos)
+ *   result    → o resultado em uma linha
  *   tags      → tecnologias
- *   category  → 'web' | 'python' | 'matematica' (usado nos filtros)
+ *   category  → 'backend' | 'dados' | 'web' | 'python' (usado nos filtros)
+ *   demo      → (opcional) link da versão online
+ *   team      → (opcional) true quando foi feito em equipe
  *   image     → (opcional) captura de tela em assets/img/projects/
- *   cover     → (opcional) capa desenhada em CSS quando não há imagem:
+ *   cover     → (opcional) capa desenhada quando não há imagem:
+ *               { kind: 'code', title: 'arquivo', lines: ['...'] }
+ *               { kind: 'metric', from: '...', to: '...', label: '...' }
  *               { kind: 'formula', text: '...' }
+ *               { kind: 'a11y' }
  */
 
 const FEATURED_PROJECT = {
-  repo: 'Javis-jz',
+  repo: 'jarvis-assistente',
+  demo: 'https://jarlisson-cpu.github.io/jarvis-assistente/',
   title: 'JARVIS',
-  subtitle: 'Assistente de IA pessoal para Windows',
+  subtitle: 'Você fala. Ele faz.',
   summary:
-    'Inspirado no JARVIS da Marvel: você fala, ele executa. Controle por voz offline, memória de longo prazo, vários modelos de IA e um sistema de plugins para automatizar o computador.',
+    'Assistente pessoal por voz para Windows. Ajusta volume e brilho, abre apps e sites, tira print, cria lembretes e conversa sobre qualquer assunto usando Claude, GPT ou Gemini. Tudo que é perigoso pede confirmação antes.',
   highlights: [
-    'Voz offline com Vosk e palavra de ativação configurável',
-    'Memória de longo prazo com SQLite e ChromaDB',
-    'Plugins: abrir apps, ler sites, OCR em imagens, mídia, arquivos',
-    'Interface gráfica em Tkinter e dashboard web com token e TLS',
-    'Arquitetura modular em fases, com testes automatizados em pytest'
+    'Integração com 3 provedores de IA, com execução de ações por ferramentas (tool use)',
+    'Usuários com senha (PBKDF2-SHA256 + sal), permissões por ação e limite de tentativas',
+    'Voz offline com Vosk, além de terminal, app desktop e interface web com login',
+    'Funciona sem chave de IA: sugere o comando mais parecido quando não entende',
+    'Arquitetura modular em plugins, coberta por testes automatizados com pytest'
   ],
   facts: [
-    { value: '72', label: 'arquivos Python' },
-    { value: '19', label: 'arquivos de teste' },
-    { value: '10', label: 'fases implementadas' }
+    { value: '90+', label: 'módulos Python' },
+    { value: '26', label: 'arquivos de teste' },
+    { value: '3', label: 'provedores de IA' }
   ],
-  tags: ['Python', 'SQLite', 'ChromaDB', 'Vosk', 'Playwright', 'pytest']
+  tags: ['Python', 'Claude · GPT · Gemini', 'Vosk', 'Playwright', 'OCR', 'pytest']
 };
 
 const PROJECTS = [
   {
-    repo: 'ACADEMIA--RESERVAS',
+    repo: 'biblioteca-api',
+    kind: 'Back-end · Java',
+    title: 'Biblioteca API',
+    summary:
+      'API REST para o acervo e os empréstimos de uma biblioteca: exemplares, devoluções e multa por atraso.',
+    proofs: ['Regras configuráveis', 'Erros RFC 9457', 'CI no GitHub Actions'],
+    tags: ['Java 21', 'Spring Boot', 'JPA', 'JUnit', 'Mockito'],
+    result: 'Regra de negócio testada antes de chegar em quem usa',
+    category: ['backend'],
+    cover: {
+      kind: 'code',
+      title: 'EmprestimoController.java',
+      lines: [
+        ['get', 'GET', '/livros?busca='],
+        ['post', 'POST', '/livros'],
+        ['post', 'POST', '/emprestimos'],
+        ['put', 'PATCH', '/emprestimos/{id}/devolucao'],
+        ['get', 'GET', '/emprestimos/atrasados']
+      ]
+    }
+  },
+  {
+    repo: 'oficina-mecanica-banco-de-dados',
+    kind: 'Banco de dados · Equipe',
+    title: 'Oficina Mecânica',
+    summary:
+      'Banco PostgreSQL para as ordens de serviço de uma oficina. Cada regra de negócio tem um teste executado e uma evidência.',
+    proofs: ['300 mil OS', '5 triggers', '34 testes'],
+    tags: ['PostgreSQL', 'SQL', 'Python'],
+    result: 'Busca de histórico 120× mais rápida com o índice certo',
+    category: ['dados'],
+    team: true,
+    cover: { kind: 'metric', from: '30,6 ms', to: '0,25 ms', label: 'busca de histórico por placa' }
+  },
+  {
+    repo: 'controle-de-financas',
+    demo: 'https://jarlisson-cpu.github.io/controle-de-financas/',
+    kind: 'Web · PWA',
+    title: 'Minhas Finanças',
+    summary:
+      'Controle financeiro pessoal: lançamentos, contas, orçamentos por categoria, metas e compras parceladas.',
+    proofs: ['Funciona offline', 'Gráficos mensais', 'Exporta CSV e JSON'],
+    tags: ['JavaScript', 'PWA', 'Service Worker'],
+    result: 'O mês inteiro numa tela, sem depender de servidor',
+    category: ['web'],
+    image: 'financas.jpg'
+  },
+  {
+    repo: 'sistema-reservas-academia',
+    kind: 'Back-end · Python',
     title: 'Academia Power',
     summary:
-      'Sistema web de reservas de aulas (Spinning, Musculação, Yoga) que controla quantos alunos cabem em cada horário.',
-    highlights: ['API REST em Flask', 'Checagem de conflito de horário', 'CRUD com SQLite'],
+      'Reservas de aulas com vagas por horário. O front-end conversa com uma API REST em Flask que salva em SQLite.',
+    proofs: ['Vagas em tempo real', 'Valida CPF', 'Painel com filtros'],
     tags: ['Python', 'Flask', 'SQLite', 'JavaScript'],
-    category: ['web', 'python'],
+    result: 'Aula lotada não aceita reserva: a API recusa',
+    category: ['backend', 'python', 'web'],
     image: 'academia.jpg'
   },
   {
+    repo: 'cookiecutter_java',
+    kind: 'Ferramenta · Java · Equipe',
+    title: 'JMol Project Generator',
+    summary:
+      'Gerador de projetos Maven inspirado no Cookiecutter: poucas respostas e o projeto sai pronto, com testes.',
+    proofs: ['Interface gráfica', 'CLI com JSON', 'Licença e CI prontos'],
+    tags: ['Java 21', 'Maven', 'JUnit'],
+    result: 'Projeto novo que compila e passa nos testes de primeira',
+    category: ['backend'],
+    team: true,
+    cover: {
+      kind: 'code',
+      title: 'terminal',
+      lines: [
+        ['cmd', '$', 'java -jar jmol.jar generate spec.json'],
+        ['out', '✓', 'projeto-cientifico/ criado'],
+        ['cmd', '$', 'mvn test'],
+        ['ok', '✓', 'BUILD SUCCESS']
+      ]
+    }
+  },
+  {
     repo: 'meu-site',
+    demo: 'https://jarlisson-cpu.github.io/meu-site/trabalho1/',
+    kind: 'Acessibilidade · PWA',
     title: 'Acessibilidade Orla da Atalaia',
     summary:
-      'PWA com mapa dos pontos acessíveis da Orla de Aracaju: rampas, banheiros adaptados, piso tátil, Braille e Libras.',
-    highlights: ['Alto contraste e leitura por voz', 'Navegação por teclado e ARIA', 'Funciona offline'],
-    tags: ['JavaScript', 'Leaflet', 'PWA', 'WCAG'],
+      'Mapa dos pontos acessíveis da Orla de Aracaju: rampas, banheiros adaptados, piso tátil, Braille e Libras.',
+    proofs: ['Leitura por voz', 'Alto contraste', 'Funciona offline'],
+    tags: ['JavaScript', 'Leaflet', 'WCAG'],
+    result: 'Um passeio na orla planejado por quem mais precisa',
     category: ['web'],
     cover: { kind: 'a11y' }
   },
   {
-    repo: 'HAPIA-BANK',
-    title: 'Harpia Bank',
+    repo: 'bubble-sort-java',
+    kind: 'Algoritmos · Java · Equipe',
+    title: '1 milhão de registros',
     summary:
-      'Landing page e tela de login de um banco digital fictício, construídas a partir de um protótipo de UI.',
-    highlights: ['Fidelidade ao protótipo', 'Múltiplas páginas', 'Flexbox'],
-    tags: ['HTML', 'CSS'],
-    category: ['web'],
-    image: 'harpia.jpg'
+      'Lê 1.000.000 de empresas de um arquivo, ordena por valor de mercado com Bubble Sort e grava o resultado.',
+    proofs: ['1.000.000 de linhas', '9 de 9 testes', 'Windows e Linux'],
+    tags: ['Java', 'Estrutura de dados'],
+    result: 'Um milhão de empresas em ordem, com teste provando',
+    category: ['dados'],
+    team: true,
+    cover: { kind: 'formula', text: 'O(n²) · 1.000.000 registros' }
   },
   {
-    repo: 'tela-de-cancelamento-eng-play',
-    title: 'Eng Play — fluxo de cancelamento',
-    summary:
-      'Telas de retenção de assinatura feitas na residência Eng Play: entende o motivo do aluno e oferece uma solução antes dele sair.',
-    highlights: ['Fluxo em 4 telas', 'Seleção múltipla com JS', 'Botão liberado com aria-disabled'],
-    tags: ['HTML', 'CSS', 'JavaScript'],
-    category: ['web'],
-    image: 'engplay.jpg'
-  },
-  {
-    repo: 'DETERMINA-O-DE-MATRIZES-INVERSA-E-ADJUNTAS-E-SISTEMAS-LINEARES',
-    title: 'Matrizes e sistemas lineares',
-    summary:
-      'Determinante por Laplace, matriz adjunta, inversa e Gauss-Jordan com pivoteamento, tudo em Python puro, sem NumPy.',
-    highlights: ['Recursão', 'Classifica o sistema (única, infinitas, nenhuma)', 'Tolerância numérica'],
-    tags: ['Python', 'Álgebra linear'],
-    category: ['python', 'matematica'],
-    cover: { kind: 'formula', text: 'A⁻¹ = adj(A) / det(A)' }
-  },
-  {
-    repo: 'ABERTURA-E-FECHAMENTO-DE-COFRES',
-    title: 'Métodos numéricos',
-    summary:
-      'Encontra raízes de f(x) = 4 + x·cos(x) por Bissecção, Newton-Raphson e Secantes e compara as iterações de cada método.',
-    highlights: ['3 métodos comparados', 'Tolerância 1e-5', 'Tratamento de erros'],
-    tags: ['Python', 'Cálculo numérico'],
-    category: ['python', 'matematica'],
-    cover: { kind: 'curve', text: 'f(x) = 4 + x·cos(x)' }
-  },
-  {
-    repo: 'GITGITHUB-OFICINA-CPU',
-    path: 'mentoria/jogos',
+    repo: 'mario-jump-game',
+    demo: 'https://jarlisson-cpu.github.io/mario-jump-game/',
+    kind: 'Jogo · JavaScript',
     title: 'Mario Jump',
     summary:
-      'Jogo de pular canos em JavaScript, criado nos encontros de mentoria da oficina de Git e GitHub.',
-    highlights: ['Animações com CSS', 'Detecção de colisão', 'Eventos de teclado'],
+      'Jogo de pular canos em JavaScript puro: física de pulo, níveis, recorde salvo e controle por toque.',
+    proofs: ['Game loop', 'Sons via Web Audio', 'Joga no celular'],
     tags: ['JavaScript', 'CSS'],
+    result: 'Começou como exercício de mentoria, virou jogo completo',
     category: ['web'],
     image: 'mario.jpg'
   },
   {
-    repo: 'PORTI',
-    title: 'PORTI — primeiro portfólio',
+    repo: 'matrizes-inversa-adjunta-sistemas-lineares',
+    kind: 'Matemática · Python',
+    title: 'Matrizes e sistemas lineares',
     summary:
-      'A primeira versão do meu portfólio, com mini-projetos em JavaScript como a lâmpada que liga e desliga.',
-    highlights: ['Experiências e projetos', 'Mini-projetos em JS', 'Várias páginas'],
-    tags: ['HTML', 'CSS', 'JavaScript'],
-    category: ['web'],
-    image: 'porti.jpg'
+      'Determinante por Laplace, adjunta, inversa e Gauss-Jordan com pivoteamento, em Python puro.',
+    proofs: ['Sem NumPy', 'Gauss-Jordan', 'Classifica o sistema'],
+    tags: ['Python', 'Álgebra linear'],
+    result: 'Álgebra linear implementada do zero',
+    category: ['python', 'dados'],
+    cover: { kind: 'formula', text: 'A⁻¹ = adj(A) / det(A)' }
   }
 ];
 
-/** Repositórios de estudo: aparecem em lista compacta. */
+/** Outros projetos e estudos: aparecem em lista compacta. */
 const STUDIES = [
-  { repo: 'WEB1.0-A-4.0-HTML.', title: 'Web 1.0 a 4.0', summary: 'Site multi-página sobre a evolução da Web.' },
-  { repo: 'WEB--NCORA', title: 'Web com âncoras', summary: 'A mesma pesquisa em página única com navegação por âncoras.' },
-  { repo: 'PROJETO-TELA', title: 'Projeto Tela', summary: 'Página de vaga para desenvolvedor front-end com formulário.' },
-  { repo: 'TABELAS.HTML', title: 'Tabelas em HTML', summary: 'Exercícios de estrutura e estilo de tabelas.' },
-  { repo: 'VIDEO--AUDIO', title: 'Vídeo e áudio', summary: 'Mídia nativa com as tags do HTML5.' },
-  { repo: 'MARGIN-X-PADDING', title: 'Margin x padding', summary: 'Introdução ao modelo de caixa do CSS.' },
-  { repo: 'BIO-JARLISSON', title: 'Bio', summary: 'Minha apresentação em Markdown.' }
+  { repo: 'abertura-fechamento-cofres', title: 'Métodos numéricos', summary: 'Bissecção, Newton-Raphson e Secantes comparados em Python.' },
+  { repo: 'tela-cancelamento-engplay', title: 'Eng Play — retenção', summary: 'Fluxo de cancelamento de assinatura feito na residência Eng Play.', demo: 'https://jarlisson-cpu.github.io/tela-cancelamento-engplay/' },
+  { repo: 'harpia-bank', title: 'Harpia Bank', summary: 'Landing page e login de um banco digital a partir de um protótipo.', demo: 'https://jarlisson-cpu.github.io/harpia-bank/' },
+  { repo: 'Laboratorio', title: 'Laboratório pytest', summary: 'Testes unitários de funções de e-commerce, incluindo casos de erro.' },
+  { repo: 'DuckPetGame', title: 'DuckPetGame', summary: 'Pet virtual no terminal com loja, economia e minigame em Python.' },
+  { repo: 'pagina-vaga-frontend', title: 'Página de vaga', summary: 'Página de vaga para desenvolvedor front-end com formulário.', demo: 'https://jarlisson-cpu.github.io/pagina-vaga-frontend/' },
+  { repo: 'primeiro-portfolio', title: 'Primeiro portfólio', summary: 'A primeira versão deste site, com mini-projetos em JavaScript.', demo: 'https://jarlisson-cpu.github.io/primeiro-portfolio/' }
 ];

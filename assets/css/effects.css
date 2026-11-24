@@ -1,0 +1,732 @@
+/* ==========================================================================
+   EFEITOS — abertura, letras, cursor, revelações, faixa rolando, pontos
+   Tudo desliga com "reduzir movimento" (ver base.css).
+   ========================================================================== */
+
+/* ---------- Tela de abertura ---------- */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  transition: transform 0.9s cubic-bezier(0.77, 0, 0.18, 1), visibility 0s linear 0.9s;
+  visibility: hidden;
+  transform: translateY(-100%);
+}
+
+.is-loading .loader {
+  visibility: visible;
+  transform: none;
+  transition: none;
+}
+
+.loader__inner {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  font-family: var(--font-poster);
+  line-height: 1;
+}
+
+.loader__mark {
+  color: var(--orange);
+  font-family: var(--font-mono);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+.loader__count {
+  min-width: 3ch;
+  font-size: clamp(4rem, 14vw, 10rem);
+  color: var(--text);
+}
+
+.loader__count::after {
+  content: '%';
+  margin-left: 4px;
+  color: var(--orange);
+  font-size: 0.35em;
+}
+
+.loader__bar {
+  position: absolute;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: 48px;
+  height: 2px;
+  background: var(--line);
+}
+
+.loader__bar i {
+  display: block;
+  height: 100%;
+  background: var(--orange);
+  box-shadow: 0 0 16px var(--orange-glow);
+  transform: scaleX(var(--load, 0));
+  transform-origin: left;
+}
+
+/* Enquanto carrega, o hero espera */
+.is-loading .hero__intro > *,
+.is-loading .hero__visual {
+  animation-play-state: paused;
+}
+
+/* ---------- Letras do nome ---------- */
+.char {
+  display: inline-block;
+  will-change: transform;
+}
+
+.is-loaded [data-split] .char {
+  animation: char-in 0.9s cubic-bezier(0.2, 0.9, 0.2, 1) both;
+  animation-delay: calc(0.15s + var(--i) * 0.045s);
+}
+
+.is-loading [data-split] .char {
+  opacity: 0;
+}
+
+@keyframes char-in {
+  from {
+    opacity: 0;
+    transform: translateY(70%) rotate(8deg);
+    filter: blur(6px);
+  }
+}
+
+/* ---------- Cursor ---------- */
+.cursor {
+  display: none;
+}
+
+.has-cursor .cursor {
+  display: block;
+}
+
+.cursor__dot,
+.cursor__ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 300;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.cursor__dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: var(--orange);
+}
+
+.cursor__ring {
+  width: 36px;
+  height: 36px;
+  margin: -18px 0 0 -18px;
+  border: 1.5px solid rgba(255, 107, 26, 0.6);
+  transition: width 0.25s var(--ease-out), height 0.25s var(--ease-out), margin 0.25s var(--ease-out),
+    background 0.25s, border-color 0.25s, opacity 0.25s;
+}
+
+.cursor.is-hover .cursor__ring {
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  background: rgba(255, 107, 26, 0.1);
+  border-color: var(--orange);
+}
+
+.cursor.is-down .cursor__ring {
+  width: 28px;
+  height: 28px;
+  margin: -14px 0 0 -14px;
+}
+
+.cursor.is-hidden .cursor__dot,
+.cursor.is-hidden .cursor__ring {
+  opacity: 0;
+}
+
+/* ---------- Revelação ao rolar ---------- */
+.has-reveal [data-reveal] {
+  transition:
+    opacity 0.9s var(--ease-out),
+    transform 0.9s var(--ease-out),
+    clip-path 1.1s cubic-bezier(0.77, 0, 0.18, 1),
+    filter 0.9s var(--ease-out);
+  transition-delay: var(--delay, 0ms);
+}
+
+.has-reveal [data-reveal='up']:not(.is-visible) {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.has-reveal [data-reveal='left']:not(.is-visible) {
+  opacity: 0;
+  transform: translateX(-60px);
+}
+
+.has-reveal [data-reveal='right']:not(.is-visible) {
+  opacity: 0;
+  transform: translateX(60px);
+}
+
+.has-reveal [data-reveal='scale']:not(.is-visible) {
+  opacity: 0;
+  transform: scale(0.8);
+  filter: blur(4px);
+}
+
+/* Títulos surgem como se uma cortina abrisse de baixo para cima */
+.has-reveal [data-reveal='clip'] {
+  clip-path: inset(0 0 0 0);
+}
+
+.has-reveal [data-reveal='clip']:not(.is-visible) {
+  clip-path: inset(100% 0 0 0);
+  transform: translateY(30px);
+}
+
+/* Depois de revelado, o card volta a responder rápido ao hover */
+.project.is-visible {
+  transition-delay: 0ms;
+}
+
+/* ---------- Faixa rolando ---------- */
+.marquee {
+  position: relative;
+  overflow: hidden;
+  border-block: 1px solid #ff8a4c;
+  background: var(--orange);
+  color: #120802;
+  transform: rotate(-1.2deg) scale(1.02);
+  margin-block: -6px;
+  z-index: 2;
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+.marquee ul {
+  display: flex;
+  flex-shrink: 0;
+  list-style: none;
+}
+
+.marquee li {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 14px 0 14px 28px;
+  font-family: var(--font-poster);
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.marquee li::after {
+  content: '✶';
+  font-size: 0.8em;
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+/* ---------- Navegação por pontos ---------- */
+.dots {
+  position: fixed;
+  right: 22px;
+  top: 50%;
+  z-index: 40;
+  display: grid;
+  gap: 14px;
+  transform: translateY(-50%);
+}
+
+.dots__item {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 14px;
+  height: 14px;
+}
+
+.dots__item i {
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid #5b5b66;
+  border-radius: 50%;
+  transition: background 0.3s, border-color 0.3s, transform 0.3s var(--ease-out);
+}
+
+.dots__item:hover i,
+.dots__item.is-active i {
+  border-color: var(--orange);
+  background: var(--orange);
+  transform: scale(1.3);
+  box-shadow: 0 0 12px var(--orange-glow);
+}
+
+.dots__label {
+  position: absolute;
+  right: 24px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--card-hi);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(8px);
+  pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s var(--ease-out);
+}
+
+.dots__item:hover .dots__label {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Header que some ao descer ---------- */
+.site-header {
+  transition: background 0.3s, border-color 0.3s, transform 0.45s var(--ease-out);
+}
+
+.site-header.is-hidden {
+  transform: translateY(-100%);
+}
+
+/* ---------- Botões: brilho que atravessa ---------- */
+.btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.25s, transform 0.35s var(--ease-out);
+}
+
+.btn--primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.7s var(--ease-out);
+}
+
+.btn--primary:hover::before {
+  transform: translateX(120%);
+}
+
+.btn--outline::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--orange-soft);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s var(--ease-out);
+}
+
+.btn--outline:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ---------- Card com brilho que segue o mouse ---------- */
+[data-tilt] {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.project::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 140, 66, 0.14), transparent 45%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.project.is-tilting::after {
+  opacity: 1;
+}
+
+.project.is-tilting {
+  transition: transform 0.1s linear, border-color 0.25s, box-shadow 0.35s;
+}
+
+/* ---------- Pulsar suave no brilho do topo ---------- */
+.hero__glow {
+  animation: glow 4s ease-in-out infinite alternate, spin-in 1.4s 0.4s cubic-bezier(0.2, 0.9, 0.2, 1) both;
+}
+
+@keyframes spin-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-45deg) scale(0.6);
+  }
+}
+
+.is-loading .hero__glow {
+  animation-play-state: paused;
+}
+
+/* ---------- Assinatura ---------- */
+.hero__signature {
+  animation: write 1.6s 0.9s var(--ease-out) both;
+}
+
+.is-loading .hero__signature {
+  animation-play-state: paused;
+}
+
+@keyframes write {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.reduce-motion .marquee__track {
+  animation: none;
+}
+
+.reduce-motion .loader {
+  display: none;
+}
+
+/* ---------- Botão "Efeitos" ---------- */
+.motion-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.motion-toggle .icon {
+  width: 15px;
+  height: 15px;
+}
+
+.motion-toggle[aria-pressed='true'] {
+  border-color: rgba(255, 107, 26, 0.6);
+  background: var(--orange-soft);
+  color: var(--orange);
+}
+
+.motion-toggle:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+/* ==========================================================================
+   FOTO EM MOLDURA + EFEITOS DE ROLAGEM
+   ========================================================================== */
+
+/* Marca: JARLISSON DEV */
+.brand .accent {
+  margin-left: 6px;
+}
+
+/* ---------- Foto do topo em moldura em arco ---------- */
+.hero__frame {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 1;
+  width: min(78%, 420px);
+  aspect-ratio: 1 / 1.42;
+  border: 1px solid rgba(255, 107, 26, 0.55);
+  border-radius: 999px 999px 22px 22px;
+  background:
+    radial-gradient(circle at 50% 28%, rgba(255, 107, 26, 0.38), transparent 62%),
+    linear-gradient(180deg, #1c1c20, #0b0b0d 80%);
+  box-shadow:
+    0 0 0 8px rgba(9, 9, 11, 0.7),
+    0 0 0 9px rgba(255, 107, 26, 0.25),
+    0 30px 80px -20px var(--orange-glow);
+  overflow: hidden;
+  transform: translateX(-50%);
+}
+
+/* Brilho que passa pela moldura de tempos em tempos */
+.hero__frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.12) 50%, transparent 60%);
+  transform: translateX(-100%);
+  animation: frame-shine 6s 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes frame-shine {
+  0%, 70% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Sombra embaixo para a foto "sair" da moldura */
+.hero__frame::before {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 1;
+  height: 28%;
+  background: linear-gradient(transparent, rgba(9, 9, 11, 0.85));
+  pointer-events: none;
+}
+
+.hero__visual .hero__photo {
+  position: absolute;
+  left: 0;
+  top: 2%;
+  bottom: auto;
+  width: 136%;
+  height: auto;
+  max-width: none;
+  transform: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+  filter: grayscale(1) contrast(1.12) brightness(1.06);
+  transition: filter 0.8s var(--ease-out);
+}
+
+/* Passou o mouse: a cor volta */
+.hero__frame:hover .hero__photo {
+  filter: grayscale(0) contrast(1.05);
+}
+
+.about__media img {
+  filter: grayscale(1) contrast(1.12) brightness(1.05) drop-shadow(0 20px 30px rgba(0, 0, 0, 0.5));
+  transition: filter 0.8s var(--ease-out);
+}
+
+.about__media:hover img {
+  filter: grayscale(0) drop-shadow(0 20px 30px rgba(0, 0, 0, 0.5));
+}
+
+/* Posições ao redor da moldura */
+.hero__visual .code-card {
+  top: -2%;
+  right: -56px;
+}
+
+.hero__visual .hero__signature {
+  left: 2%;
+  right: auto;
+  top: auto;
+  bottom: 12%;
+}
+
+.hero__visual .hero__glow {
+  top: 50%;
+  width: 70%;
+}
+
+/* ---------- Frase que acende palavra por palavra ---------- */
+[data-words] .word {
+  opacity: calc(0.14 + var(--lit, 0) * 0.86);
+  filter: blur(calc((1 - var(--lit, 0)) * 3px));
+  transition: opacity 0.2s linear, filter 0.2s linear;
+}
+
+/* ---------- Texto gigante que anda com a rolagem ---------- */
+.bg-word {
+  overflow: hidden;
+  padding-block: clamp(32px, 5vw, 64px) 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.bg-word span {
+  display: block;
+  font-family: var(--font-poster);
+  font-size: clamp(4.5rem, 13vw, 11rem);
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 107, 26, 0.35);
+  will-change: translate;
+}
+
+.bg-word--solid span {
+  color: rgba(255, 255, 255, 0.04);
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.12);
+}
+
+/* ---------- Linha da trajetória que enche com a rolagem ---------- */
+.road::after {
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: 8px;
+  width: 2px;
+  height: calc((100% - 16px) * var(--progress, 0));
+  background: var(--orange);
+  box-shadow: 0 0 14px var(--orange-glow);
+}
+
+.road::before {
+  background: var(--line);
+}
+
+/* ---------- Faixa controlada pela rolagem ---------- */
+.marquee__track.is-js {
+  animation: none;
+  will-change: transform;
+}
+
+/* ---------- Inclinação suave ---------- */
+[data-skew] {
+  will-change: transform;
+  transform-origin: center;
+}
+
+@media (max-width: 720px) {
+  .hero__frame {
+    width: min(82%, 320px);
+  }
+
+  .road::after {
+    left: 6px;
+  }
+
+  .hero__visual .code-card {
+    display: none;
+  }
+
+  .hero__visual .hero__signature {
+    left: 0;
+    bottom: 3%;
+    font-size: 2.6rem;
+  }
+}
+
+
+/* ==========================================================================
+   FOTO "SAINDO DA MOLDURA" — cabeça inteira por cima do arco,
+   corpo recortado nas laterais e embaixo pela moldura
+   ========================================================================== */
+.hero__cutout {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 2;
+  width: min(78%, 420px);
+  aspect-ratio: 1 / 1.42;
+  transform: translateX(-50%);
+  /* corta laterais e base; deixa o topo livre para a cabeça sair */
+  clip-path: inset(-45% 0 0 0 round 0 0 22px 22px);
+}
+
+/* Escurece a base para o corpo "afundar" na moldura */
+.hero__cutout::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 26%;
+  background: linear-gradient(transparent, rgba(9, 9, 11, 0.9));
+  pointer-events: none;
+}
+
+.hero__visual .hero__cutout .hero__photo {
+  position: absolute;
+  left: -11%;
+  top: -8%;
+  width: 122%;
+  height: auto;
+  max-width: none;
+  transform: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+  filter: grayscale(1) contrast(1.12) brightness(1.06) drop-shadow(0 18px 30px rgba(0, 0, 0, 0.55));
+  transition: filter 0.8s var(--ease-out);
+}
+
+.hero__cutout:hover .hero__photo {
+  filter: grayscale(0) contrast(1.05) drop-shadow(0 18px 30px rgba(0, 0, 0, 0.55));
+}
+
+/* A sombra de baixo agora fica na foto, não na moldura */
+.hero__frame::before {
+  display: none;
+}
+
+/* Cartão de código ao lado, sem cobrir os óculos */
+.hero__visual .code-card {
+  top: 68%;
+  right: -72px;
+}
+
+.hero__visual .hero__signature {
+  z-index: 4;
+}
+
+@media (max-width: 960px) {
+  .hero .hero__visual {
+    height: 560px;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero .hero__visual {
+    height: 480px;
+  }
+
+  .hero__cutout {
+    width: min(82%, 320px);
+  }
+}
+
+/* Foto do "Quem eu sou": centralizada, braços cortados pelas bordas do card */
+.about__media img {
+  left: 0;
+  top: 9%;
+  width: 100%;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.about__stat {
+  top: auto;
+  bottom: 6%;
+}

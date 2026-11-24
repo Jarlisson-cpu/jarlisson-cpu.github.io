@@ -3,8 +3,10 @@
  */
 
 Projects.init();
-ConsoleJarvis.init();
+Effects.init();
 Navigation.init();
+Reveal.init();
+GitHubStats.init();
 ContactForm.init();
 
 document.querySelectorAll('[data-year]').forEach(el => {
